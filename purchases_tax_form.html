@@ -1,121 +1,148 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>房产交易税计算器</title>
     <link rel="stylesheet" type="text/css" href="./aui-v2.1/css/aui.css" />
 </head>
+
 <body>
     <form action="purchases_tax_result.html" method="get">
-    <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-form-list">
-            <li class="aui-list-header">请输入信息</li>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-header">请输入信息</li>
 
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        物业类型
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            物业类型
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="isCommon" value="1"> 普通</label>
+                            <label><input class="aui-radio" type="radio" name="isCommon" value="0" checked> 非普通</label>
+                        </div>
                     </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="isCommon" value="1" checked> 普通</label>
-                        <label><input class="aui-radio" type="radio" name="isCommon" value="0"> 非普通</label>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            首套房
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="isFirst" value="1" checked> 是</label>
+                            <label><input class="aui-radio" type="radio" name="isFirst" value="0"> 否</label>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        首次购房
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            贷款记录
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="hasLoan" value="1"> 有</label>
+                            <label><input class="aui-radio" type="radio" name="hasLoan" value="0"  checked> 无</label>
+                        </div>
                     </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="isFirst" value="1" checked> 是</label>
-                        <label><input class="aui-radio" type="radio" name="isFirst" value="0"> 否</label>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            唯一住房
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="isSingle" value="1" checked> 是</label>
+                            <label><input class="aui-radio" type="radio" name="isSingle" value="0"> 否</label>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        唯一住房
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            动迁房
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="isRelocate" value="1" checked> 是</label>
+                            <label><input class="aui-radio" type="radio" name="isRelocate" value="0"> 否</label>
+                        </div>
                     </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="isOnly" value="1" checked> 是</label>
-                        <label><input class="aui-radio" type="radio" name="isOnly" value="0"> 否</label>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            房产年限
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="houseAge" value="5" checked> 满五年</label>
+                            <label><input class="aui-radio" type="radio" name="houseAge" value="2"> 满两年</label>
+                            <label><input class="aui-radio" type="radio" name="houseAge" value="1"> &lt;两年</label>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        动迁房
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            建筑面积
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" placeholder="建筑面积" name="area">
+                        </div>
+                        <div class="aui-list-item-center">
+                            m<sub>2</sub>
+                        </div>
                     </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="isPlace" value="1" checked> 一手</label>
-                        <label><input class="aui-radio" type="radio" name="isPlace" value="2"> 非一手</label>
-                        <label><input class="aui-radio" type="radio" name="isPlace" value="0"> 否</label>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            中介费用
+                        </div>
+                        <div class="aui-list-item-input">
+                            <label><input class="aui-radio" type="radio" name="agency" value="1" checked> 1%</label>
+                            <label><input class="aui-radio" type="radio" name="agency" value="2"> 2%</label>
+                            <label><input class="aui-radio" type="radio" name="agency" value="3"> 3%</label>
+                            <label><input class="aui-radio" type="radio" name="agency" value="4"> 4%</label>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        房产年限
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            原价
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" placeholder="金额" name="lastPrice">
+                        </div>
+                        <div class="aui-list-item-center">
+                            元
+                        </div>
                     </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="property" value="5" checked> 满五年</label>
-                        <label><input class="aui-radio" type="radio" name="property" value="2"> 满两年</label>
-                        <label><input class="aui-radio" type="radio" name="property" value="1"> &lt;两年</label>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            总价
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" placeholder="金额" name="totalPrice">
+                        </div>
+                        <div class="aui-list-item-center">
+                            元
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        建筑面积
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                        <input class="aui-btn aui-btn-info aui-btn-block" type="submit" value="提交">
                     </div>
-                    <div class="aui-list-item-input">
-                        <input type="number" placeholder="建筑面积" name="space">
-                    </div>
-                    <div class="aui-list-item-center">
-                        m<sub>2</sub>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        原价
-                    </div>
-                    <div class="aui-list-item-input">
-                        <input type="number" placeholder="金额" name="lastPrice">
-                    </div>
-                    <div class="aui-list-item-center">
-                        元 
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        总价
-                    </div>
-                    <div class="aui-list-item-input">
-                        <input type="number" placeholder="金额" name="totalPrice">
-                    </div>
-                    <div class="aui-list-item-center">
-                        元 
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
-                    <input class="aui-btn aui-btn-info aui-btn-block" type="submit" value="提交">
-                </div>
-            </li>
-        </ul>
-    </div>
+                </li>
+            </ul>
+        </div>
     </form>
 </body>
+
 </html>

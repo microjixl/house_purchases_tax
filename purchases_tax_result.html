@@ -7,6 +7,8 @@
         content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>房产交易税计算器</title>
+    <script src="./mj/tax.js"></script>
+    <script src="./echarts/echarts.common.min.js"></script>
     <script type="text/javascript">
         var request = {
             QueryString: function (val) {
@@ -15,16 +17,27 @@
                 return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
             }
         }
-        //isCommon=1&isFirst=1&isOnly=1&isPlace=1&property=5&space=1&lastPrice=1&totalPrice=1
+
+        //isCommon=1&isFirst=1&hasLoan=1&isSingle=1
+        //&isRelocate=1&houseAge=5&area=&agency=1&lastPrice=2&totalPrice=1
         var isCommon = request.QueryString("isCommon");
         var isFirst = request.QueryString("isFirst");
-        var isOnly = request.QueryString("isOnly");
-        var isPlace = request.QueryString("isPlace");
-        var property = request.QueryString("property");
-        var space = request.QueryString("space");
+        var hasLoan = request.QueryString("hasLoan");
+        var isSingle = request.QueryString("isSingle");
+        var isRelocate = request.QueryString("isRelocate");
+        var houseAge = request.QueryString("houseAge");
+        var area = request.QueryString("area");
+        var agency = request.QueryString("agency");
         var lastPrice = request.QueryString("lastPrice");
         var totalPrice = request.QueryString("totalPrice");
-
+        
+        var house = new House(isCommon, isFirst, hasLoan, isSingle, isRelocate, houseAge, area, agency, lastPrice, totalPrice);
+        house.calculateTax();
+        alert("deedTax:" + house.buyer.deedTax);
+        alert("agencyCost:" + house.buyer.agencyCost);
+        alert("initPayment:" + house.buyer.initPayment);
+        alert("incrementTax:" + (house.seller.incrementTax + house.seller.additionalTax));
+        alert("incomeTax:" + house.seller.incomeTax);
         //TODO calculate!!!
     </script>
 </head>
