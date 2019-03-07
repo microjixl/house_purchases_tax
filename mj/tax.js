@@ -13,17 +13,25 @@ class House {
         this.buyer = { deedTax: 0, agencyCost: 0, initPayment: 0 };
         this.seller = { incrementTax: 0, additionalTax: 0, incomeTax: 0 };
 
-        if(this.totalPrice < this.lastPrice){
+        if (this.totalPrice < this.lastPrice) {
             this.lastPrice = this.totalPrice;
         }
+    }
+
+    buyerPay() {
+        return this.buyer.deedTax + this.buyer.agencyCost + this.buyer.initPayment;
+    }
+
+    sellerPay() {
+        return this.seller.incrementTax + this.seller.additionalTax + this.seller.incomeTax;
     }
 
     initPaymentCalculate() {
         var ratio = 0.35;
         if (isFirst == 1) {
-            if(hasLoan == 0){
+            if (hasLoan == 0) {
                 ratio = 0.35;
-            }else{
+            } else {
                 ratio = 0.5;
             }
         } else {
@@ -42,7 +50,7 @@ class House {
             if (area <= 90) {
                 ratio = 0.01;
             } else {
-                ratio = 0.15;
+                ratio = 0.015;
             }
         } else {
             ratio = 0.03;

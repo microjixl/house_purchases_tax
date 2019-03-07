@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html style="height: 100%">
 
 <head>
     <meta charset="utf-8">
@@ -9,6 +9,9 @@
     <title>房产交易税计算器</title>
     <script src="./mj/tax.js"></script>
     <script src="./echarts/echarts.common.min.js"></script>
+
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
     <script type="text/javascript">
         var request = {
             QueryString: function (val) {
@@ -30,14 +33,124 @@
         var agency = request.QueryString("agency");
         var lastPrice = request.QueryString("lastPrice");
         var totalPrice = request.QueryString("totalPrice");
-        
+
         var house = new House(isCommon, isFirst, hasLoan, isSingle, isRelocate, houseAge, area, agency, lastPrice, totalPrice);
         house.calculateTax();
-        alert("deedTax:" + house.buyer.deedTax);
-        alert("agencyCost:" + house.buyer.agencyCost);
-        alert("initPayment:" + house.buyer.initPayment);
-        alert("incrementTax:" + (house.seller.incrementTax + house.seller.additionalTax));
-        alert("incomeTax:" + house.seller.incomeTax);
-        //TODO calculate!!!
+        // alert("deedTax:" + house.buyer.deedTax);
+        // alert("agencyCost:" + house.buyer.agencyCost);
+        // alert("initPayment:" + house.buyer.initPayment);
+        // alert("incrementTax:" + (house.seller.incrementTax + house.seller.additionalTax));
+        // alert("incomeTax:" + house.seller.incomeTax);
+        //TODO chart show
     </script>
 </head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = '嵌套环形图';
+
+        // 指定图表的配置项和数据
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['买方', '卖方', '契税', '中介费', '首付', '增值税', '附加税', '个税']
+            },
+            series: [
+                {
+                    name: '买卖方',
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: [0, '30%'],
+
+                    label: {
+                        normal: {
+                            position: 'inner'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        { value: house.buyerPay(), name: '买方', selected: true },
+                        { value: house.sellerPay(), name: '卖方' }
+                    ]
+                },
+                {
+                    name: '税费',
+                    type: 'pie',
+                    radius: ['35%', '55%'],
+                    label: {
+                        normal: {
+                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                            backgroundColor: '#eee',
+                            borderColor: '#aaa',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            // shadowBlur:3,
+                            // shadowOffsetX: 2,
+                            // shadowOffsetY: 2,
+                            // shadowColor: '#999',
+                            // padding: [0, 7],
+                            rich: {
+                                a: {
+                                    color: '#999',
+                                    lineHeight: 22,
+                                    align: 'center'
+                                },
+                                // abg: {
+                                //     backgroundColor: '#333',
+                                //     width: '100%',
+                                //     align: 'right',
+                                //     height: 22,
+                                //     borderRadius: [4, 4, 0, 0]
+                                // },
+                                hr: {
+                                    borderColor: '#aaa',
+                                    width: '100%',
+                                    borderWidth: 0.5,
+                                    height: 0
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 33
+                                },
+                                per: {
+                                    color: '#eee',
+                                    backgroundColor: '#334455',
+                                    padding: [2, 4],
+                                    borderRadius: 2
+                                }
+                            }
+                        }
+                    },
+                    data: [
+                        { value: house.buyer.deedTax, name: '契税' },
+                        { value: house.buyer.agencyCost, name: '中介费' },
+                        { value: house.buyer.initPayment, name: '首付' },
+                        { value: house.seller.incrementTax, name: '增值税' },
+                        { value: house.seller.additionalTax, name: '附加税' },
+                        { value: house.seller.incomeTax, name: '个税' }
+                    ]
+                }
+            ]
+        };
+
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+</body>
+
+</html>
