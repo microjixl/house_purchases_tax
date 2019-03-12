@@ -26,6 +26,10 @@ class House {
         return this.seller.incrementTax + this.seller.additionalTax + this.seller.incomeTax;
     }
 
+    totalPay() {
+        return this.buyerPay() + this.sellerPay();
+    }
+
     initPaymentCalculate() {
         var ratio = 0.35;
         if (isFirst == 1) {
@@ -100,8 +104,7 @@ class House {
         if (isRelocate == 1) {
             return 0;
         }
-
-        return incrementTax / 0.05 * 0.006;
+        return incrementTax / 0.05 * 0.003;
     }
 
     incomeTaxCalculate(incrementTax, additionalTax) {
