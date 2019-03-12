@@ -40,11 +40,23 @@
         // alert("incomeTax:" + house.seller.incomeTax);
         //TODO chart show
     </script>
+    <style>
+        .taxDescription {
+            color: white;
+            font-size: 8;
+        }
+    </style>
 </head>
 
-<body style="height: 100%; margin: 0">
+<body style="height: 100%; margin: 0;background-color: #2E2733">
+    <section class="aui-content-padded" id="description">
+    </section>
     <div id="container" style="height: 100%"></div>
     <script type="text/javascript">
+
+        var description = "<div class=\"aui-content taxDescription\"> 增值税(" + house.seller.incomeTax.toLocaleString('en-US') + "):<br/>" + house.incrementTaxDescription + "</div><div class=\"aui-content taxDescription\"> 附加税(" + house.seller.additionalTax.toLocaleString('en-US') + "):<br/>" + house.additionalTaxDescription + "</div><div class=\"aui-content taxDescription\"> 个税(" + house.seller.incomeTax.toLocaleString('en-US') + "):<br/>" + house.incomeTaxDescription + "</div><div class=\"aui-content taxDescription\"> 契税(" + house.buyer.deedTax.toLocaleString('en-US') + "):<br/>" + house.deedTaxDescription + "</div><div class=\"aui-content taxDescription\"> 中介费(" + house.buyer.agencyCost.toLocaleString('en-US') + "):<br/>" + house.agencyCostDescription + "</div><div class=\"aui-content taxDescription\"> 首付(" + house.buyer.initPayment.toLocaleString('en-US') + "):<br/>" + house.initPaymentDescription + "</div>";
+        document.getElementById("description").innerHTML = description;
+
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
 
@@ -205,11 +217,11 @@
                 zlevel: 1,
                 highlightPolicy: 'descendant',
                 data: data,
-                center: ['50%', '50%'],
+                center: ['50%', '30%'],
                 sort: null,
                 itemStyle: {
                     borderColor: bgColor,
-                    borderWidth: 5
+                    borderWidth: 3
                 },
                 levels: [
                     {},
