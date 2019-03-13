@@ -12,11 +12,15 @@
 
 [https://www.echartsjs.com/](https://www.echartsjs.com/)
 
+#### 演示地址
+[https://microjixl.github.io/house_purchases_tax/](https://microjixl.github.io/house_purchases_tax/)
+
+#### github
+欢迎fork 
+[https://github.com/microjixl/house_purchases_tax](https://github.com/microjixl/house_purchases_tax)
+
 #### 界面截图
 
 ![form](screen_capture/form.png)
 
 ![result](screen_capture/result.png)
-
-#### 演示地址
-[https://microjixl.github.io/house_purchases_tax/](https://microjixl.github.io/house_purchases_tax/)
