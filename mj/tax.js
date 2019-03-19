@@ -100,6 +100,11 @@ class House {
     }
 
     incrementTaxCalculate() {
+        if (totalPrice <= lastPrice) {
+            this.incrementTaxDescription = '核定价小于买入价，没没有增值税';
+            return 0;
+        }
+
         //动迁房不交增值税
         if (isRelocate == 1) {
             this.incrementTaxDescription = '动迁房没有增值税';
