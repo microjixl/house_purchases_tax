@@ -114,11 +114,11 @@ class House {
         var base = totalPrice;
         if (houseAge >= 2) {
             if (isCommon == 1) {
-                this.incrementTaxDescription = '满两年唯一没有增值税';
+                this.incrementTaxDescription = '满两年普通住房没有增值税';
                 return 0;
             } else {
                 base = totalPrice - lastPrice;
-                this.incrementTaxDescription = '满两年不唯一，增值税=(核定价-买入价)/1.05*5%';
+                this.incrementTaxDescription = '满两年非普通住房，增值税=(核定价-买入价)/1.05*5%';
             }
         } else {
             this.incrementTaxDescription = '不满两年，增值税=核定价/1.05*5%';
